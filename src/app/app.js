@@ -5,11 +5,14 @@ import {
 , ColumnHeaders
 , Title
 , TableBody
+, RefreshIcon
+, ColumnHeader
 } from './components/styled'
 import {
 	Filter
 , Item
 } from './components'
+import refreshImg from '../assets/images/refresh.svg'
 import {getData} from '../utils/xhr'
 import '../scss/styles.css'
 
@@ -25,8 +28,22 @@ function App() {
 			<Title>SpaceX Launches</Title>
 			<TableHeader>
 				<Filters>
+					<RefreshIcon className="clickable" src={refreshImg} alt="refresh icon" />
+					<div className="filters">
+					  <Filter name="Landing Success" />
+					  <Filter name="Reused" />
+					  <Filter name="With Reddit" />
+					</div>
 				</Filters>
-				<ColumnHeaders></ColumnHeaders>
+				<ColumnHeaders>
+					<ColumnHeader>Badge</ColumnHeader>
+					<ColumnHeader>Rocket Name</ColumnHeader>
+					<ColumnHeader>Rocket Type</ColumnHeader>
+					<ColumnHeader>Launch Date</ColumnHeader>
+					<ColumnHeader>Details</ColumnHeader>
+					<ColumnHeader>ID</ColumnHeader>
+					<ColumnHeader>Article</ColumnHeader>
+				</ColumnHeaders>
 			</TableHeader>
 			<TableBody>
 				{data.map(d => <Item key={Math.random()} data={d} />)}

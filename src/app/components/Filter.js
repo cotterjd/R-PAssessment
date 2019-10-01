@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-
-export function Filter() {
+import React from 'react'
+import {CheckboxLabel} from './styled'
+export function Filter({name}) {
 		return (
-			<div>
-        <input type="checkbox" /><label>foo</label>
+			<div style={{padding: '20px'}}>
+        <input type="checkbox" /><CheckboxLabel>{name}</CheckboxLabel>
 			</div>
 		)
 }
