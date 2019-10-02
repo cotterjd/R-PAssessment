@@ -1,0 +1,15 @@
+{
+  "name": "r_p_backend",
+  "version": "1.0.0",
+  "description": "backend for R&P assessment",
+  "main": "seed.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jordan Cotter",
+  "license": "ISC",
+  "dependencies": {
+    "graphql-client": "^2.0.1",
+    "ramda": "^0.26.1"
+  }
+}

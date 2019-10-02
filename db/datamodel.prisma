@@ -1,0 +1,11 @@
+type Launch {
+  id: ID! @id
+  rocket_name: String
+  rocket_type: String
+  launch_date: DateTime
+  details: String
+  flight_number: Int
+  launch_success: Boolean
+  reuse: Json
+  links: Json
+}
