@@ -1,13 +1,13 @@
 const log = console.log
 , R = require('ramda')
-, config = require('./config')
+, config = require('../config')
 , gqlClient = require('graphql-client')({
     url: config.GQL_URL
   })
 , fs = require('fs')
 , json = fs.readFileSync('./seed-data.json', 'utf8')
 , arr = JSON.parse(json)
-, x = arr[0]
+, x = arr[1]
 , launchObj = {
     rocket_name: x.rocket.rocket_name
   , rocket_type: x.rocket.rocket_type
