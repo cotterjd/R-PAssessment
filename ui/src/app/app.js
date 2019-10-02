@@ -16,13 +16,22 @@ import refreshImg from '../assets/images/refresh.svg'
 import {getData} from '../utils/xhr'
 import '../scss/styles.css'
 
+const log = console.log // eslint-disable-line no-unused-vars
+, R = require('ramda')
+
 function App() {
 	const [data, setData] = useState([])
+	const [filters, setFilters] = useState({
+		land_success: false,
+		reused: false,
+		with_reddit: false,
+	})
+	const filterProps = {filters, setFilters}
 	useEffect(() => {
-		getData()
+		const obj = R.pickBy((v, k) => v, filters)
+		getData(Object.keys(obj))
 		.then(setData)
-		.catch(e => alert(e.message || e))
-	}, [])
+	}, [filters])
 	return (
 		<div id="app" className="page-wrapper">
 			<Title>SpaceX Launches</Title>
@@ -30,9 +39,9 @@ function App() {
 				<Filters>
 					<RefreshIcon className="clickable" src={refreshImg} alt="refresh icon" />
 					<div className="filters">
-					  <Filter name="Landing Success" />
-					  <Filter name="Reused" />
-					  <Filter name="With Reddit" />
+					  <Filter name="Land Success" {...filterProps} />
+					  <Filter name="Reused"  {...filterProps}/>
+					  <Filter name="With Reddit"  {...filterProps}/>
 					</div>
 				</Filters>
 				<ColumnHeaders>
@@ -46,7 +55,7 @@ function App() {
 				</ColumnHeaders>
 			</TableHeader>
 			<TableBody>
-				{data.map(d => <Item key={Math.random()} data={d} />)}
+				{data.map(d => <Item key={d.id} data={d} />)}
 			</TableBody>
 		</div>
 	)

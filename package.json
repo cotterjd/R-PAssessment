@@ -1,5 +1,5 @@
 {
-  "name": "front-end-assessment-react",
+  "name": "full-stack-assessment",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,9 @@
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "node scripts/start.js",
     "start-web": "npm-run-all -p watch-css start-js",
-    "start": "docker-compose up -d && (cd db && sleep 3 && node seed.js)",
+    "start": "npm-run-all start-server seed",
+    "start-server": "docker-compose up -d",
+    "seed": "(cd db && sleep 3 && node.js)",
     "build-js": "node scripts/build.js",
     "build": "npm-run-all build-css build-js",
     "push": "git push origin $(git branch | grep \\* | cut -d ' ' -f2)"
@@ -23,6 +25,7 @@
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
     "css-loader": "0.28.7",
+    "date-fns": "^2.4.1",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
     "eslint": "4.10.0",
