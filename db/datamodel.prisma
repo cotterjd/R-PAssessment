@@ -2,10 +2,28 @@ type Launch {
   id: ID! @id
   rocket_name: String
   rocket_type: String
-  launch_date: DateTime
+  launch_date: String
   details: String
   flight_number: Int
   launch_success: Boolean
-  reuse: Json
-  links: Json
+  article_link: String
+  reuse: Reuse
+  links: Links
+}
+
+type Reuse {
+  id: ID! @id
+  core: Boolean
+  side_core1: Boolean
+  side_core2: Boolean
+  fairings: Boolean
+  capsule: Boolean
+}
+
+type Links {
+  id: ID! @id
+  reddit_campaign: String
+  reddit_launch: String
+  reddit_recovery: String
+  reddit_media: String
 }
