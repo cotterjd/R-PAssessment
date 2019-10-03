@@ -14,7 +14,9 @@ export function Item({data}) {
         <span>{formatDate(data.launch_date)}</span>
         <span title={getTooltip(data.details || '')}>{formatDetails(data.details || '')}</span>
         <span>{data.flight_number}</span>
-        <LinkImg width="25px" src={require('../../assets/images/link.svg')} alt="external link icon"/>
+        <LinkImg href={data.article_link} target="blank_"><img className="clickable" width="25px"
+					src={require('../../assets/images/link.svg')} alt="external link icon"
+				/></LinkImg>
 			</ItemContainer>
 		)
 }

@@ -27,17 +27,13 @@ function App() {
 		with_reddit: false,
 	})
 	const filterProps = {filters, setFilters}
-	useEffect(() => {
-		const obj = R.pickBy((v, k) => v, filters)
-		getData(Object.keys(obj))
-		.then(setData)
-	}, [filters])
+	useEffect(refreshData, [])
 	return (
 		<div id="app" className="page-wrapper">
 			<Title>SpaceX Launches</Title>
 			<TableHeader>
 				<Filters>
-					<RefreshIcon className="clickable" src={refreshImg} alt="refresh icon" />
+					<RefreshIcon onClick={refreshData} className="clickable" src={refreshImg} alt="refresh icon" />
 					<div className="filters">
 					  <Filter name="Land Success" {...filterProps} />
 					  <Filter name="Reused"  {...filterProps}/>
@@ -59,6 +55,12 @@ function App() {
 			</TableBody>
 		</div>
 	)
+
+	function refreshData(evt) {
+		const obj = R.pickBy((v, k) => v, filters)
+		getData(Object.keys(obj))
+		.then(setData)
+	}
 }
 
 export default App

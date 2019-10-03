@@ -34,7 +34,7 @@ export const Filters = styled.div`
       display: flex;
     }
   `
-export const LinkImg = styled.img`
+export const LinkImg = styled.a`
     justify-self: center;
   `
 export const RefreshIcon = styled.img`
