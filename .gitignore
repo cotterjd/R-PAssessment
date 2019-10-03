@@ -20,9 +20,9 @@ node_modules
 */yarn-debug.log*
 */yarn-error.log*
 
-ui/package.json
-ui/package-lock.json
+#ui/package.json
+#ui/package-lock.json
 ui/.env
 
-api/package.json
-api/package-lock.json
+#api/package.json
+#api/package-lock.json
