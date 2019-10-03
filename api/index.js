@@ -13,23 +13,17 @@ app.use((req, res, next) => {
   next()
 })
 
-app.get("/", (req, res) => {
+app.get("/test", (req, res) => {
   return rp({
     uri: 'http://localhost:4468'
   , method: 'POST'
-  , body: JSON.stringify({query: `{
-        launches {id}
-    }`})
+  , body: JSON.stringify({query: `{ launches {id}}`})
   , headers: {
       'Content-Type': 'application/json'
     }
   })
-  .then(r => {
-    return res.status(200).json(r)
-  })
-  .catch(error => {
-    return res.status(500).json({error})
-  })
+  .then(r => res.json(r))
+  .catch(error => res.json({errors: error}))
 });
 
 app.post("/gql", (req, res) => {

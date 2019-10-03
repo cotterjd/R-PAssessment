@@ -44,7 +44,10 @@ export function getData(filters = []) {
       return mockData()
     } else return result.data.launches || []
   })
-  .catch(handleError)
+  .catch(e => {
+    handleError(e)
+    return mockData()
+  })
 }
 
 function handleError(e) {
