@@ -1,11 +1,13 @@
 import React from 'react'
-import {CheckboxLabel} from './styled'
-const log = console.log
+import {CheckboxLabel, Checkbox} from './styled'
+const log = console.log // eslint-disable-line no-unused-vars
+
 export function Filter({name, filters, setFilters}) {
 	const propName = getPropName(name)
 	return (
 		<div style={{padding: '20px'}}>
-      <input type="checkbox" checked={filters[propName]} onChange={setFilter}/><CheckboxLabel>{name}</CheckboxLabel>
+      <Checkbox checked={filters[propName]} onClick={setFilter}></Checkbox>
+      <CheckboxLabel>{name}</CheckboxLabel>
 		</div>
 	)
 

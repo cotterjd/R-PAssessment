@@ -23,6 +23,8 @@ export const ItemContainer = styled.div`
     border-radius: 5px;
     height: 50px;
     align-items: center;
+    border-sizing: box-size;
+    padding: 0 20px;
   `
 export const Filters = styled.div`
     display: flex;
@@ -38,11 +40,32 @@ export const Filters = styled.div`
 export const LinkImg = styled.a`
     justify-self: center;
   `
+
+const checkMarkImg = require('../../../assets/images/checkmark.svg')
+export const Checkbox = styled.span`
+    height: 20px;
+    width: 20px;
+    border: 2px solid #fff;
+    position: absolute;
+    border-radius: 3px;
+    transform: translate(-35px, -5px);
+
+    ${props => props.checked ?
+      `
+        background-image: url(${checkMarkImg});
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      ` : ''}
+  `
+
 export const RefreshIcon = styled.img`
     border: 1px solid #fff;
     border-radius: 50%;
     padding: 5px;
+    transition: all .2s ease-in-out;
     :hover {
+      transform: scale(1.1);
       background-color: ${darkGrayColor};
     }
   `
