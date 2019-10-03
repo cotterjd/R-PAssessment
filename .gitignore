@@ -1,6 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
-*/src/**/*.css
+#TODO: find out why this was here
+#*/src/**/*.css
 
 # dependencies
 */node_modules
