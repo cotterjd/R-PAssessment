@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+const darkGrayColor = '#525a6d'
 const dataGrid = `
   display: grid;
   grid-template: 1fr / 80px 120px 120px 120px 500px 40px 80px;
@@ -41,6 +42,9 @@ export const RefreshIcon = styled.img`
     border: 1px solid #fff;
     border-radius: 50%;
     padding: 5px;
+    :hover {
+      background-color: ${darkGrayColor};
+    }
   `
 export const TableBody = styled.div`
     display: grid;
@@ -50,7 +54,7 @@ export const TableBody = styled.div`
 export const TableHeader = styled.div`
     display: grid;
     grid-template: 2fr 1fr / 1fr;
-    border: 1px solid #525a6d;
+    border: 1px solid ${darkGrayColor};
     border-radius: 7px 7px;
   `
 export const Title = styled.h1`

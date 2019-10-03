@@ -68,9 +68,17 @@ const log = console.log
   `
 ;
 
-gqlClient.query(masterQuery(launchData))
-.then(r => {
-  if(!r.errors) log('data successfully seeded')
-  else log(r.errors)
-})
-.catch(log)
+gqlClient.query(`{ launches {id}}`)
+  .then(r => {
+    if (!r.errors) {
+      if (!r.data.launches.length) {
+        gqlClient.query(masterQuery(launchData))
+          .then(r => {
+            if(!r.errors) log('data successfully seeded')
+            else log(r.errors)
+          }).catch(log)
+      } else log('data already exists')
+    } else {
+      log(r.errors)
+    }
+  }).catch(log)
