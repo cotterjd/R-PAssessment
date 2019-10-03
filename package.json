@@ -12,9 +12,11 @@
     "seed": "(cd db && sleep 3 && node.js)",
     "build-js": "node scripts/build.js",
     "build": "npm-run-all build-css build-js",
-    "push": "git push origin $(git branch | grep \\* | cut -d ' ' -f2)"
+    "push": "git push origin $(git branch | grep \\* | cut -d ' ' -f2)",
+    "pull": "git pull origin $(git branch | grep \\* | cut -d ' ' -f2)"
   },
   "dependencies": {
+    "and": "0.0.3",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
@@ -41,6 +43,7 @@
     "graphql-client": "^2.0.1",
     "html-webpack-plugin": "2.29.0",
     "node-sass-chokidar": "0.0.3",
+    "npm": "^6.11.3",
     "npm-run-all": "^4.1.2",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
@@ -51,6 +54,7 @@
     "react": "16.8.6",
     "react-dev-utils": "^5.0.0",
     "react-dom": "16.8.6",
+    "start": "^5.1.0",
     "style-loader": "0.19.0",
     "styled-components": "^4.4.0",
     "sw-precache-webpack-plugin": "0.11.4",

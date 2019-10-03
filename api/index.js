@@ -3,6 +3,7 @@ const app = express();
 const port = process.env.PORT || '8080'
 const bodyParser = require('body-parser')
 const rp = require('request-promise')
+const R = require('ramda')
 
 app.use(bodyParser.json())
 app.use((req, res, next) => {
@@ -26,9 +27,12 @@ app.get("/test", (req, res) => {
   .catch(error => res.json({errors: error}))
 });
 
-app.post("/gql", (req, res) => {
-  const {query} = req.body
-  if (!query) return res.json(500).json({error: 'no query'})
+app.post("/launches", (req, res) => {
+  if (!req.body.filters) return res.json({errors: "filters required"})
+  if (!(req.body.filters instanceof Array)) return res.json({errors: "filters must be an array"})
+  if (req.body.filters.some(x => typeof x !== "string")) return res.json({errors: "filtes must be an array of strings"})
+  const {filters} = req.body
+  const query = getFullQuery(filters)
   return rp({
     uri: 'http://localhost:4468'
   , method: 'POST'
@@ -39,6 +43,103 @@ app.post("/gql", (req, res) => {
   })
   .then(r => res.json(r))
   .catch(error => res.json({errors: error}))
+
+  // Array -> String
+  function getFullQuery(fs) {
+    return R.compose(
+      getQuery
+    , getFilters
+    , R.map(getGQLStr)
+    )(fs)
+  }
+  // String -> Sting
+  function getGQLStr(filter = '') {
+    switch(filter) {
+      case 'land_success':
+        return `launch_success: true`
+      case 'reused':
+        return `
+          reuse: {
+          	OR:[{
+                  core: true
+                },{
+                  side_core1: true
+                },{
+                  side_core2: true
+                },{
+                  fairings: true
+                },{
+                  capsule: true
+                }
+              ]
+            }
+        `
+      case 'with_reddit':
+        return `
+          links: {
+          	OR:[{
+                  reddit_campaign_not: null
+                },{
+                  reddit_launch_not: null
+                },{
+                  reddit_recovery_not: null
+                },{
+                  reddit_media_not: null
+                }
+              ]}
+        `
+      default:
+        return filter
+    }
+  }
+
+  // Array -> String
+  function getFilters(fs = []) {
+    if (fs.length > 1) {
+      return `
+        (where: {
+          AND: [{
+            ${fs.join('},{')}
+          }]
+        })
+      `
+    }
+    if (fs.length) {
+      return `(where: {${fs.join(' ')}})`
+    }
+    return ''
+  }
+  // String -> String
+  function getQuery(filtersStr = '') {
+    return `
+    {
+      launches ${filtersStr}{
+        id
+        launch_success
+        rocket_name
+        rocket_type
+        launch_date
+        details
+        flight_number
+        article_link
+        launch_success
+        reuse {
+        	core
+          side_core1
+          side_core2
+          fairings
+          capsule
+  	    }
+        links {
+          reddit_campaign
+          reddit_launch
+          reddit_media
+          reddit_recovery
+        }
+      }
+    }
+  `
+  }
 });
 
 app.listen(port, () => {
