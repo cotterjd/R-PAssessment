@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "GQL_DOMAIN=rp_assessment_prisma_1 node index.js",
+    "start-dev": "GQL_DOMAIN=localhost node index.js"
   },
   "author": "Jordan Cotter",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "rambda": "^3.2.0",
+    "ramda": "^0.26.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
   }

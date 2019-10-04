@@ -4,6 +4,7 @@ const port = process.env.PORT || '8080'
 const bodyParser = require('body-parser')
 const rp = require('request-promise')
 const R = require('ramda')
+const {GQL_DOMAIN} = require('./config')
 
 app.use(bodyParser.json())
 app.use((req, res, next) => {
@@ -14,27 +15,13 @@ app.use((req, res, next) => {
   next()
 })
 
-app.get("/test", (req, res) => {
-  return rp({
-    uri: 'http://localhost:4468'
-  , method: 'POST'
-  , body: JSON.stringify({query: `{ launches {id}}`})
-  , headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(r => res.json(r))
-  .catch(error => res.json({errors: error}))
-});
-
 app.post("/launches", (req, res) => {
-  if (!req.body.filters) return res.json({errors: "filters required"})
-  if (!(req.body.filters instanceof Array)) return res.json({errors: "filters must be an array"})
-  if (req.body.filters.some(x => typeof x !== "string")) return res.json({errors: "filtes must be an array of strings"})
-  const {filters} = req.body
+  const {filters = []} = req.body
+  if (!(filters instanceof Array)) return res.json({errors: "filters must be an array"})
+  if (filters.some(x => typeof x !== "string")) return res.json({errors: "filtes must be an array of strings"})
   const query = getFullQuery(filters)
   return rp({
-    uri: 'http://localhost:4468'
+    uri: `http://${GQL_DOMAIN}:4468`
   , method: 'POST'
   , body: JSON.stringify({query})
   , headers: {

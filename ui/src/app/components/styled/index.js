@@ -83,4 +83,5 @@ export const TableHeader = styled.div`
 export const Title = styled.h1`
     text-align: center;
     color: #fff;
+    font-size: 3em;
   `

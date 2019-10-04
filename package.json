@@ -8,6 +8,8 @@
     "start-js": "node scripts/start.js",
     "start-web": "npm-run-all -p watch-css start-js",
     "start": "npm-run-all start-server seed",
+    "start-prisma": "docker-compose -f docker-compose-dev.yml up -d",
+    "stop-prisma": "docker-compose -f docker-compose-dev.yml down",
     "start-server": "docker-compose up -d",
     "seed": "(cd db && sleep 3 && node.js)",
     "build-js": "node scripts/build.js",
