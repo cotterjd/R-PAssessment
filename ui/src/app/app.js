@@ -21,19 +21,20 @@ const log = console.log // eslint-disable-line no-unused-vars
 
 function App() {
 	const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
 	const [filters, setFilters] = useState({
 		land_success: false,
 		reused: false,
 		with_reddit: false,
 	})
 	const filterProps = {filters, setFilters}
-	useEffect(refreshData, [])
+	useEffect(refreshData, [filters])
 	return (
 		<div id="app" className="page-wrapper">
 			<Title>SpaceX Launches</Title>
 			<TableHeader>
 				<Filters>
-					<RefreshIcon onClick={refreshData} className="clickable" src={refreshImg} alt="refresh icon" />
+					<RefreshIcon loading={loading} className="clickable" src={refreshImg} alt="refresh icon" />
 					<div className="filters">
 					  <Filter name="Land Success" {...filterProps} />
 					  <Filter name="Reused"  {...filterProps}/>
@@ -57,9 +58,11 @@ function App() {
 	)
 
 	function refreshData(evt) {
+    setLoading(true)
 		const obj = R.pickBy((v, k) => v, filters)
 		getData(Object.keys(obj))
 		.then(setData)
+    .then(_ => setLoading(false))
 	}
 }
 

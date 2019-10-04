@@ -63,11 +63,20 @@ export const RefreshIcon = styled.img`
     border: 1px solid #fff;
     border-radius: 50%;
     padding: 5px;
-    transition: all .2s ease-in-out;
-    :hover {
-      transform: scale(1.1);
-      background-color: ${darkGrayColor};
-    }
+
+
+    ${props => props.loading
+      ? `
+        animation: App-logo-spin infinite 2s linear;
+        @keyframes App-logo-spin {
+          from {
+            transform: rotate(360deg);
+          }
+          to {
+            transform: rotate(0deg);
+          }
+        }
+      ` : ''}
   `
 export const TableBody = styled.div`
     display: grid;
