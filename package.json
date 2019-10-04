@@ -11,7 +11,7 @@
     "start-prisma": "docker-compose -f docker-compose-dev.yml up -d",
     "stop-prisma": "docker-compose -f docker-compose-dev.yml down",
     "start-server": "docker-compose up -d",
-    "seed": "(cd db && sleep 3 && node.js)",
+    "seed": "(cd db && sleep 3 && node seed.js)",
     "build-js": "node scripts/build.js",
     "build": "npm-run-all build-css build-js",
     "push": "git push origin $(git branch | grep \\* | cut -d ' ' -f2)",
