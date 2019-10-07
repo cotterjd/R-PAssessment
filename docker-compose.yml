@@ -4,10 +4,6 @@ services:
     build: api/.
     ports:
     - "8080:8080"
-  webapp:
-    build: ui/.
-    ports:
-    - "3000:3000"
   prisma:
     image: prismagraphql/prisma:1.34
     restart: always
