@@ -37,10 +37,10 @@ const log = console.log
         ${gqlProp('rocket_type', x)}
         ${gqlProp('launch_date', x)}
         ${gqlProp('details', x)}
-        ${gqlProp('mission_patch_small', x)}
         ${gqlProp('flight_number', x, true)}
         ${gqlProp('launch_success', x, true)}
         ${gqlProp('article_link', x.links)}
+        ${gqlProp('mission_patch_small', x.links)}
         reuse: {
           create: {
             ${gqlProp('core', x.reuse, true)}
