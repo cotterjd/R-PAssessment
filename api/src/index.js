@@ -24,6 +24,20 @@ app.use((req, res, next) => {
   next()
 })
 
+app.get('/test', (req, res) => {
+  const query = require('./helpers').getFullQuery([])
+  return rp({
+    uri: `http://${GQL_DOMAIN}:4468`
+  , method: 'POST'
+  , body: JSON.stringify({query})
+  , headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(r => res.json(r))
+  .catch(error => res.json({errors: error}))
+})
+
 app.post("/launches", (req, res) => {
   const {filters = []} = req.body
   if (!(filters instanceof Array)) return res.json({errors: "filters must be an array"})
