@@ -7,7 +7,17 @@ const {GQL_DOMAIN} = require('../config')
 
 app.use(bodyParser.json())
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+  const origin = req.headers.origin || "*"
+  const allowedOrigins = [
+    "http://space-x.cotterslist.com",
+    "https://space-x.cotterslist.com",
+    "http://cotterjd.github.io/rp_ui",
+    "https://cotterjd.github.io/rp_ui",
+    "http://localhost:3000"
+  ]
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin)
+  }
   res.setHeader('Access-Control-Allow-Headers', ['Content-Type'])
   if (res.method === 'OPTIONS') res.end("")
 
