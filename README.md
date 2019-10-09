@@ -1,14 +1,14 @@
 # R&P Assessment 
 
-This app displays missions by Space X. It has a <a href="https://github.com/cotterjd/rp_ui">frontend build with React 16.8.6</a>. It's backend is powered by Postgres, GraphQL, and Prisma hosted on a Ubuntu Digital Ocean droplet. It's hosted live at http://space-x.cotterslist.com. 
+This app displays missions by Space X. It has a <a href="https://github.com/cotterjd/rp_ui">frontend build with React 16.8.6</a>. It's backend is powered by Postgres, GraphQL, and Prisma hosted on a Ubuntu Digital Ocean droplet. It's live at http://space-x.cotterslist.com. 
 
-## Installation
+## Installation (Linux)
 
 To run this app locally you will need docker, docker-compose, and the prisma cli <br />
 `$ curl -fsSL https://get.docker.com -o get-docker.sh`<br />
 `$ sudo sh get-docker.sh`<br />
-`$ sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose`<br />
-`$ sudo npm install prisma`
+`$ sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose`<br />
+`$ sudo npm install -g prisma`
 
 ## Start Server
 
@@ -17,7 +17,7 @@ To run this app locally you will need docker, docker-compose, and the prisma cli
 `$ (cd db && prisma deploy)`<br />
 `$ npm run start-prisma`<br />
 `$ (cd api && npm install && npm start)`<br />
-start the ui
+start the ui<br />
 `$ cd ..`<br />
 `$ git clone git@github.com:cotterjd/rp_ui`<br />
 `$ cd rp_ui`<br />
