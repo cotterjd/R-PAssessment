@@ -9,6 +9,7 @@ type Launch {
   article_link: String
   reuse: Reuse
   links: Links
+  mission_patch_small: String
 }
 
 type Reuse {
