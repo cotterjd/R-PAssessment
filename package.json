@@ -14,7 +14,7 @@
     "start-server": "docker-compose up -d --build",
     "seed": "(cd db && sleep 3 && node seed.js)",
     "seed-data": "(cd db && node seed.js)",
-    "reseed-data": "(cd db && node seed.js clear)",
+    "reseed-data": "(cd db && sleep 3 && node seed.js clear)",
     "push": "git push origin $(git branch | grep \\* | cut -d ' ' -f2)",
     "pull": "git pull origin $(git branch | grep \\* | cut -d ' ' -f2)",
     "deploy": "npm-run-all pull deploy-prisma restart reseed-data"
