@@ -82,6 +82,7 @@ function getQuery(filtersStr = '') {
       flight_number
       article_link
       launch_success
+      mission_patch_small
       reuse {
       	core
         side_core1

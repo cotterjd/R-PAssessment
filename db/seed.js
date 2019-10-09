@@ -17,12 +17,11 @@ const log = console.log
   , rocket_type: x.rocket.rocket_type
   , launch_date: x.launch_date_local
   , reuse: R.pick(['core', 'side_core1', 'side_core2', 'fairings', 'capsule'], x.reuse)
-  , links: R.pick(['reddit_campaign', 'reddit_launch', 'reddit_recovery', 'reddit_media', 'article_link'], x.links)
+  , links: R.pick(['reddit_campaign', 'reddit_launch', 'reddit_recovery', 'reddit_media', 'article_link', 'mission_patch_small'], x.links)
   , ...R.pick([
       'details'
     , 'flight_number'
     , 'launch_success'
-    , 'mission_patch_small'
     ], x)
   })
 , launchData = data.map(createLaunchObj)
@@ -68,19 +67,44 @@ const log = console.log
       ${xs.map((x, i) => launchQuery(x, i)).join(' ')}
     }
   `
+
+, arg = R.last(process.argv)
+
+, getLaunches = () => gqlClient.query(`{ launches {id}}`)
+
+, saveData = () => gqlClient.query(masterQuery(launchData))
+
+, handleResponse = r => {
+    if(!r) return
+    if(!r.errors) return log('data successfully seeded')
+    return log(r.errors)
+  }
+, checkData = r => {
+    if (!!r.errors) return log(r.errors)
+    if (r.data.launches.length) return log('data already exists')
+    return saveData()
+  }
+
+, clearData = () => gqlClient.query(`
+    mutation {
+      deleteManyLaunches(
+        where: {id_not: null}
+      ) {
+        count 
+      }
+    }
+  `)
 ;
 
-gqlClient.query(`{ launches {id}}`)
-  .then(r => {
-    if (!r.errors) {
-      if (!r.data.launches.length) {
-        gqlClient.query(masterQuery(launchData))
-          .then(r => {
-            if(!r.errors) log('data successfully seeded')
-            else log(r.errors)
-          }).catch(log)
-      } else log('data already exists')
-    } else {
-      log(r.errors)
-    }
-  }).catch(log)
+if (arg === 'clear') {
+  clearData()
+    .then(saveData)
+    .then(handleResponse)
+    .catch(log)
+} else {
+  getLaunches()
+    .then(checkData)
+    .then(handleResponse)
+    .catch(log)
+}
+

@@ -5,12 +5,18 @@
   "scripts": {
     "start": "npm-run-all start-server seed",
     "stop": "docker-compose down",
+    "restart": "npm-run-all stop start",
     "start-prisma": "docker-compose -f docker-compose-dev.yml up -d",
     "stop-prisma": "docker-compose -f docker-compose-dev.yml down",
+    "deploy-prisma": "(cd db && prisma deploy)",
+    "update-db": "npm-run-all pull deploy-prisma reseed-data",
+    "update-api": "npm-run-all pull restart",
     "start-server": "docker-compose up -d --build",
     "seed": "(cd db && sleep 3 && node seed.js)",
+    "seed-data": "(cd db && node seed.js)",
+    "reseed-data": "(cd db && node seed.js clear)",
     "push": "git push origin $(git branch | grep \\* | cut -d ' ' -f2)",
-    "pull": "git pull origin $(git branch | grep \\* | cut -d ' ' -f2)"
+    "pull": "git pull origin $(git branch | grep \\* | cut -d ' ' -f2)",
   },
   "dependencies": {
     "babel-eslint": "7.2.3",
