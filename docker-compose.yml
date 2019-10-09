@@ -6,6 +6,7 @@ services:
     - "8080:8080"
   prisma:
     image: prismagraphql/prisma:1.34
+    container_name: space_x_prisma
     restart: always
     ports:
       - '4468:4468'

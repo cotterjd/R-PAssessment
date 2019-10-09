@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "GQL_DOMAIN=rp_assessment_prisma_1 node src/index.js",
+    "start": "GQL_DOMAIN=space_x_prisma node src/index.js",
     "start-dev": "GQL_DOMAIN=localhost node src/index.js"
   },
   "author": "Jordan Cotter",
