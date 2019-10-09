@@ -16,7 +16,7 @@
     "seed-data": "(cd db && node seed.js)",
     "reseed-data": "(cd db && node seed.js clear)",
     "push": "git push origin $(git branch | grep \\* | cut -d ' ' -f2)",
-    "pull": "git pull origin $(git branch | grep \\* | cut -d ' ' -f2)",
+    "pull": "git pull origin $(git branch | grep \\* | cut -d ' ' -f2)"
   },
   "dependencies": {
     "babel-eslint": "7.2.3",
