@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 app.post("/launches", (req, res) => {
   const {filters = []} = req.body
   if (!(filters instanceof Array)) return res.json({errors: "filters must be an array"})
-  if (filters.some(x => typeof x !== "string")) return res.json({errors: "filtes must be an array of strings"})
+  if (filters.some(x => typeof x !== "string")) return res.json({errors: "filters must be an array of strings"})
   const query = require('./helpers').getFullQuery(filters)
   return rp({
     uri: `http://${GQL_DOMAIN}:4468`
