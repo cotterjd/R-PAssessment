@@ -17,11 +17,7 @@ To run this app locally you will need docker, docker-compose, and the prisma cli
 `$ (cd db && prisma deploy)`<br />
 `$ npm run start-prisma`<br />
 `$ (cd api && npm install && npm start)`<br />
-start the ui<br />
-`$ cd ..`<br />
-`$ git clone git@github.com:cotterjd/rp_ui`<br />
-`$ cd rp_ui`<br />
-`$ npm install && npm start`<br />
+<a href="https://github.com/cotterjd/rp_ui/blob/gh-pages/README.md">start the ui</a>
 
 
 ## Deploy 
