@@ -5,9 +5,12 @@ This app was developed with Atom and Firefox and tested on Chrome. It displays m
 ## Prerequisite (Linux)
 
 To run this app locally you will need docker, docker-compose, and the prisma cli <br />
+### install docker
 `$ curl -fsSL https://get.docker.com -o get-docker.sh`<br />
 `$ sudo sh get-docker.sh`<br />
+### install docker-compose
 `$ sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose`<br />
+### install prisma
 `$ sudo npm install -g prisma`
 
 ## Run Locally
