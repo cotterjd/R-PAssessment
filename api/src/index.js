@@ -31,9 +31,8 @@ app.get('/', (req, res) => {
 
 app.get('/test', (req, res) => {
   const query = require('./helpers').getFullQuery([])
-  return fetch({
-    uri: `http://${GQL_DOMAIN}:4468`
-  , method: 'POST'
+  return fetch(`http://${GQL_DOMAIN}:4468`, {
+    method: 'POST'
   , body: JSON.stringify({query})
   , headers: {
       'Content-Type': 'application/json'
