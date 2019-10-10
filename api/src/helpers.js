@@ -48,7 +48,7 @@ function getGQLStr(filter = '') {
             ]}
       `
     default:
-      return filter
+      return ''
   }
 }
 

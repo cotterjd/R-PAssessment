@@ -4,17 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "GQL_DOMAIN=space_x_prisma node src/index.js",
-    "start-dev": "GQL_DOMAIN=localhost node src/index.js"
+    "test": "jest",
+    "start": "GQL_DOMAIN=space_x_prisma node src/index.js"
   },
   "author": "Jordan Cotter",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "ramda": "^0.26.1",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "node-fetch": "^2.6.0",
+    "ramda": "^0.26.1"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }

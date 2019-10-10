@@ -1,8 +1,9 @@
 const express = require("express");
+const fetch = require('node-fetch')
 const app = express();
 const port = process.env.PORT || '8080'
 const bodyParser = require('body-parser')
-const rp = require('request-promise')
+const launchService = require('./launchService')
 const {GQL_DOMAIN} = require('../config')
 
 app.use(bodyParser.json())
@@ -30,7 +31,7 @@ app.get('/', (req, res) => {
 
 app.get('/test', (req, res) => {
   const query = require('./helpers').getFullQuery([])
-  return rp({
+  return fetch({
     uri: `http://${GQL_DOMAIN}:4468`
   , method: 'POST'
   , body: JSON.stringify({query})
@@ -42,26 +43,14 @@ app.get('/test', (req, res) => {
   .catch(error => res.json({errors: error}))
 })
 
-app.post("/launches", (req, res) => {
-  const {filters = []} = req.body
-  if (!(filters instanceof Array)) return res.json({errors: "filters must be an array"})
-  if (filters.some(x => typeof x !== "string")) return res.json({errors: "filters must be an array of strings"})
-  const query = require('./helpers').getFullQuery(filters)
-  return rp({
-    uri: `http://${GQL_DOMAIN}:4468`
-  , method: 'POST'
-  , body: JSON.stringify({query})
-  , headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(r => res.json(r))
-  .catch(error => res.json({errors: error}))
+app.post("/launches", async (req, res) => {
+  try {
+    const r = await launchService(req.body.filters || [])
+    res.json(r)
+  } catch(e) {
+    return res.status(500).json(e)
+  }
 });
-
-module.exports = {
-  test: () => 'foo'
-}
 
 app.listen(port, () => {
     console.log(`Listening to requests on http://localhost:${port}`);
