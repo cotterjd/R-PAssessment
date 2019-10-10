@@ -52,6 +52,23 @@ app.post("/launches", async (req, res) => {
   }
 });
 
+app.post("/query", async (req, res) => {
+  const {query} = req.body
+  if (query.includes('mutation')) {
+    return res.status(401)
+  }
+  return fetch({
+    uri: `http://${GQL_DOMAIN}:4468`
+  , method: 'POST'
+  , body: JSON.stringify({query})
+  , headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(r => res.json(r))
+  .catch(error => res.json({errors: error}))
+});
+
 app.listen(port, () => {
     console.log(`Listening to requests on http://localhost:${port}`);
 });
