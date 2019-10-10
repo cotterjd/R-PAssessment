@@ -24,6 +24,10 @@ app.use((req, res, next) => {
   next()
 })
 
+app.get('/', (req, res) => {
+  res.send("Hi! I'm reponsible for sending Space X data to space-x.cotterslist.com. Try adding /test to the url to see me in action.")
+})
+
 app.get('/test', (req, res) => {
   const query = require('./helpers').getFullQuery([])
   return rp({
