@@ -1,6 +1,6 @@
 # R&P Assessment 
 
-This app displays missions by Space X. It has a <a href="https://github.com/cotterjd/rp_ui">frontend build with React 16.8.6</a>. It's backend is powered by Postgres, GraphQL, and Prisma hosted on a Ubuntu Digital Ocean droplet. It's live at http://space-x.cotterslist.com. 
+This app was developed with Atom and Firefox and tested on Chrome. It displays missions by Space X. It has a <a href="https://github.com/cotterjd/rp_ui">frontend build with React 16.8.6</a>. It's backend is powered by Postgres, GraphQL, and Prisma hosted on a Ubuntu Digital Ocean droplet. It's UI is served through Github Pages and it's backend is served through Nginx. It's live at https://space-x.cotterslist.com, whose domain is managed by Namecheap. 
 
 ## Installation (Linux)
 
