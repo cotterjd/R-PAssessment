@@ -16,7 +16,7 @@
     "seed-data": "(cd db && node seed.js)",
     "reseed-data": "(cd db && sleep 3 && node seed.js clear)",
     "clear-git": "git checkout -- .",
-    "push": "git push origin $(git branch | grep \\* | cut -d ' ' -f2)",
+    "push": "npm run pull && git push origin $(git branch | grep \\* | cut -d ' ' -f2)",
     "pull": "git pull origin $(git branch | grep \\* | cut -d ' ' -f2)",
     "server-deploy": "npm-run-all clear-git pull deploy-prisma restart reseed-data",
     "deploy": "npm run push && ssh -t jordan@167.99.59.61 '(cd RP_assessment && sudo npm run server-deploy)'",
