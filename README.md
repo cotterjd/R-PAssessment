@@ -26,3 +26,8 @@ To run this app locally you will need docker, docker-compose, and the prisma cli
 ## Deploy 
 
 To deploy this, you will need access to the server. Once your user has been created and your public key has been added to the server you can run `npm run deploy` followed by your server password. 
+
+## Test
+
+must have prisma running first (`npm run start-prisma`)<br />
+`npm run test`
