@@ -15,7 +15,7 @@ To run this app locally you will need docker, docker-compose, and the prisma cli
 
 ## Run Locally
 
-`$ git clone git@github.com:cotterjd/RP_assessment.git`<br />
+`$ git clone -b master git@github.com:cotterjd/RP_assessment.git`<br />
 `$ cd RP_assessment`<br />
 `$ npm run start-dev`<br />
 <a href="https://github.com/cotterjd/rp_ui/blob/master/README.md">start the ui</a>
