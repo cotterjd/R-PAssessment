@@ -4,18 +4,29 @@ This app was developed with Atom and Firefox and tested on Chrome. It displays m
 
 ## Installing Prerequisites (Ubuntu)
 
-To run this app locally you will need <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04#step-1-—-installing-docker">docker</a>, docker-compose, and the prisma cli <br />
+To run this app locally you will need 
+<ol>
+  <li>git (sudo apt-get install -y git)</li> 
+  <li>npm (sudo apt install -y npm)</li>
+  <li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04#step-1-—-installing-docker">docker</a></li>
+  <li>docker-compose</li>
+  <li>prisma cli (sudo npm install -g prisma)</li>
+ </ol>
 
-### install docker-compose
+### docker-compose install instructions
 `$ sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose`<br />
-### install prisma
-`$ sudo npm install -g prisma`
+#### make executable
+`$ sudo chmod +x /usr/local/bin/docker-compose`<br />
+#### change ownership and add user to group
+`$ sudo chown ${USER} /usr/local/bin/docker-compose`<br />
+`$ sudo usermod -aG docker ${USER}` or `sudo gpasswd -a ${USER} docker`
 
 ## Run Locally
 
 `$ git clone -b master git@github.com:cotterjd/RP_assessment.git`<br />
 `$ cd RP_assessment`<br />
-`$ npm install && npm run start-dev`<br />
+`$ npm install`<br />
+`$ sudo npm run start-dev`<br />
 <a href="https://github.com/cotterjd/rp_ui/blob/master/README.md#user-content-run-locally">start the ui</a>
 
 
