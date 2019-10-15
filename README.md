@@ -4,10 +4,8 @@ This app was developed with Atom and Firefox and tested on Chrome. It displays m
 
 ## Installing Prerequisites (Ubuntu)
 
-To run this app locally you will need docker, docker-compose, and the prisma cli <br />
-### install docker
-`$ curl -fsSL https://get.docker.com -o get-docker.sh`<br />
-`$ sudo sh get-docker.sh`<br />
+To run this app locally you will need <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04">docker</a>, docker-compose, and the prisma cli <br />
+
 ### install docker-compose
 `$ sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose`<br />
 ### install prisma
