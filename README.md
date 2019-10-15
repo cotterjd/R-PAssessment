@@ -2,7 +2,7 @@
 
 This app was developed with Atom and Firefox and tested on Chrome. It displays missions by Space X. It has a <a href="https://github.com/cotterjd/rp_ui/tree/master">frontend</a> built with React 16.8.6. It's backend is powered by Postgres, GraphQL, and Prisma hosted on a Ubuntu Digital Ocean droplet. It's UI is served through Github Pages(https://cotterjd.github.io/rp_ui) and it's backend is through Nginx(https://api.space-x.cotterslist.com). It's live at https://space-x.cotterslist.com, whose domain is managed by Namecheap. 
 
-## Prerequisites (Ubuntu)
+## Installing Prerequisites (Ubuntu)
 
 To run this app locally you will need docker, docker-compose, and the prisma cli <br />
 ### install docker
